@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+<link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css' />
+<style>
+	#header {
+		font-family: 'Slabo 27px', serif;
+		background-color: #2E2929;
+		color: #FF3300;
+		font-size: 3em;
+		border-radius: 30px;
+		border: 2px groove #ff3300;
+	}
+	#header:hover {
+		color: #2E2929;
+		background-color:  #FF3300;
+		border: 2px groove #2E2929;
+	}
+	body {
+		background: linear-gradient(300deg, #3399FF, #003366);
+	}
+	.sub_btn {
+		width: 15%;
+		height: 40px;
+		color: #FF3300;
+		background: linear-gradient(300deg, #2E2F30, #003399);
+		border-color: #FF3300;
+		border-top-right-radius: 20px;
+		border-bottom-left-radius: 20px;
+	}
+	.username {
+		background-color: #2E2929;
+		color: #FF3300;
+		height: 40px;
+		border: 2px dotted groove;
+	}
+	.password {
+		background-color: #2E2929;
+		color: #FF3300;
+		height:40px;
+		border: 2px dotted groove;
+	}
+</style>
+</h:head>
+<body>
+
+	<center>
+	<h1 id="header">Login</h1>
+	<h:outputText value="#{userBean.error}" />
+	<h:form>
+		<h:inputText class="username" value="#{userBean.username}" p:placeholder="username" />
+		<h:inputSecret class="password" value="#{userBean.password}" p:placeholder="password" />
+		<br />
+		<br />
+		<h:commandButton class="sub_btn" value="login" action="${userBean.authenticateUser()}">
+		</h:commandButton>
+	</h:form>
+	<h:dataTable value="#{hibernateQueryManager.retrieveUsers()}" var="user">
+	
+	<h:column>
+		<h:outputText value="#{user.username}" />
+	</h:column>
+	
+	<h:column>
+		<h:outputText value="#{user.password}" />
+	</h:column>
+	</h:dataTable>
+	</center>
+</body>
+</html>

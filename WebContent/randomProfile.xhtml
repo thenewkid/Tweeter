@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<style>
+body {
+	background: linear-gradient(300deg, #3399FF, #003366);
+	color: orange;
+}
+</style>
+</h:head>
+
+
+<body>
+	<center>
+		<h:outputText
+			value="Welcome to #{randomProfileBean.username}'s profile" />
+		<br />
+		<h:outputText value="#{randomProfileBean.username}'s followers" />
+		<br />
+		<h:dataTable value="#{randomProfileBean.getFollowers()}"
+			var="follower">
+			<h:column>
+				<h:outputText value="#{follower.username}" />
+			</h:column>
+		</h:dataTable>
+
+
+		<br />
+		<h:outputText value="#{randomProfileBean.username} is following" />
+		<br />
+		<h:dataTable value="#{randomProfileBean.getFollowing()}"
+			var="following">
+			<h:column>
+				<h:outputText value="#{following.username}" />
+			</h:column>
+		</h:dataTable>
+
+		<br /> <br />
+
+		<h:dataTable value="#{randomProfileBean.retrieveTweets()}" var="tweet">
+
+			<h:column>
+				<h:outputText value="#{tweet.tweetid}" />
+			</h:column>
+			<h:column>
+				<h:outputText value="#{tweet.username}" />
+			</h:column>
+			<h:column>
+				<h:outputText value="#{tweet.message}" />
+			</h:column>
+		</h:dataTable>
+	</center>
+</body>
+</html>
